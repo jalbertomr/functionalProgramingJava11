@@ -15,15 +15,14 @@ public class Main {
 
         // .filter High order funtion receives a function and decides if
         // evaluate now, later or never.
-        // LAZY optimization don´t do nothing at all until it's required by one instruction
-        // like findFisrt()
+        // Replacing method references with lambdas
         System.out.println("with stream: " );
         final Stream<Integer> temp =
                 values.stream()
-                .filter(Main::isGreatherThan3)
-                .filter(Main::isEven)
-                .map(Main::doubleIt);
-        //System.out.println(temp.findFirst());
+                .filter( e -> isGreatherThan3(e))
+                .filter( e-> isEven(e))
+                .map( e -> doubleIt(e));
+        System.out.println(temp.findFirst());
 
     }
 
