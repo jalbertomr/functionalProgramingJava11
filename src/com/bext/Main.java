@@ -1,5 +1,7 @@
 package com.bext;
 
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 
 public class Main {
@@ -12,19 +14,11 @@ public class Main {
     }
 
     private static boolean isPrime(final int number) {
-        //Imperative
-        //mutability
-        //for (int i = 2; i < number; i++) {
-        //    if (number % i == 0) return false;
-        //}
-        //return number > 1;
+        Predicate<Integer> isDivisible = divisor -> (number % divisor == 0);
 
-        //Declarative
-        //inmmutability
         return (number > 1) &&
                 IntStream.range(2, number)
-                        .noneMatch(i -> number % i == 0);
+                        .noneMatch(index -> isDivisible.test(index));
+                        //java11 must be .test to call functional Interface.
     }
-
-
 }
