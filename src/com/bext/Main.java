@@ -2,16 +2,15 @@ package com.bext;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class Main {
-    // Dependency Inyection (Strategy Pattern) with Function composition, Predicate
-    public static int totalValues(List<Integer> numbers, Predicate<Integer> selector) {
-        int result = 0;
-        for( int e : numbers) {
-            if (selector.test(e)) result += e;
-        }
-        return result;
+    // Dependency Inyection (Strategy Pattern) with Function composition, Predicate. stream instead for
+    public static Integer totalValues(List<Integer> numbers, Predicate<Integer> selector) {
+        return numbers.stream()
+                .filter(selector)
+                .reduce(Math::addExact).get();
     }
 
     public static void main(String[] args) {
