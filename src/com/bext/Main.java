@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -14,14 +15,16 @@ public class Main {
 
         // .filter High order funtion receives a function and decides if
         // evaluate now, later or never.
-        // LAZY optimization
-        System.out.println("with stream: " +
+        // LAZY optimization don´t do nothing at all until it's required by one instruction
+        // like findFisrt()
+        System.out.println("with stream: " );
+        final Stream<Integer> temp =
                 values.stream()
                 .filter(Main::isGreatherThan3)
                 .filter(Main::isEven)
-                .map(Main::doubleIt)
-                .findFirst()
-        );
+                .map(Main::doubleIt);
+        //System.out.println(temp.findFirst());
+
     }
 
     private static boolean isGreatherThan3(Integer number) {
