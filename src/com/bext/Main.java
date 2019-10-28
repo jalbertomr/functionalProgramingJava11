@@ -6,13 +6,13 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 public class Main {
-    // pure functions, then can do Referential transparency takes 6sec with stream
+    // pure functions, then can do Referential transparency takes less than 2 sec with parallelStream
 
     public static void main(String[] args) {
         List<Integer> values = Arrays.asList(1,2,3,5,4,6);
 
         System.out.println(
-          values.stream()
+          values.parallelStream()
                 .mapToInt(Main::doubleIt)
                 .sum()
           );
