@@ -11,22 +11,22 @@ public class Main {
     public static void main(String[] args) {
         // find the double of the first even number greater than 3
         List<Integer> values = Arrays.asList(1,2,3,5,4,6,7,8,9,10);
-        int  result = 0;
-        for (int e : values ){
-            if ( e > 3 && e % 2 == 0) {
-                result = e * 2;
-                break;
-            }
-        }
-        System.out.println("with for : " + result);
 
         System.out.println("with stream: " +
                 values.stream()
-                .filter(e -> e > 3)
-                .filter(e -> e % 2 == 0)
+                .filter(Main::isGreatherThan3)
+                .filter(Main::isEven)
                 .map( e -> e * 2)
                 .findFirst()
         );
+    }
+
+    private static boolean isGreatherThan3(Integer number) {
+        return number > 3;
+    }
+
+    private static boolean isEven(Integer number) {
+        return number % 2 == 0;
     }
 
 }
